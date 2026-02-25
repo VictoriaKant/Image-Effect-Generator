@@ -1,0 +1,763 @@
+/* 
+ * 全局样式重置
+ * 使用 box-sizing: border-box 确保元素的 padding 和 border 不会增加元素的总宽度
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+ * 页面主体样式
+ * 使用渐变背景增强视觉效果
+ * 设置最小高度确保页面填满视口
+ */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    color: #e0e0e0;
+}
+
+/* 
+ * 主容器样式
+ * 设置最大宽度并居中显示
+ */
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 
+ * 页面头部样式
+ * 标题使用渐变色文字效果
+ */
+header {
+    text-align: center;
+    padding: 15px 0;
+    margin-bottom: 15px;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00d4ff, #7c3aed, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #888;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+/* 
+ * 主内容区域布局
+ * 使用 CSS Grid 实现左右分栏布局
+ * 左侧固定宽度用于控制面板，右侧自适应用于预览
+ */
+.main-content {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 20px;
+    flex: 1;
+}
+
+/* 
+ * 左侧面板样式
+ * 使用 flex 垂直排列各个区域
+ */
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: calc(100vh - 180px);
+}
+
+/* 
+ * 右侧面板样式
+ */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 
+ * 各功能区域通用样式
+ * 使用毛玻璃效果增强视觉层次
+ */
+.upload-section,
+.controls-section,
+.preview-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 
+ * 区域标题样式
+ */
+h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #fff;
+}
+
+/* 
+ * 控制组子标题样式
+ */
+h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #00d4ff;
+}
+
+/* 
+ * 上传区域样式
+ * 使用虚线边框提示可拖拽上传
+ */
+.upload-section {
+    flex-shrink: 0;
+}
+
+.upload-area {
+    border: 2px dashed rgba(0, 212, 255, 0.5);
+    border-radius: 10px;
+    padding: 20px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 
+ * 上传区域悬停效果
+ */
+.upload-area:hover {
+    border-color: #00d4ff;
+    background: rgba(0, 212, 255, 0.05);
+}
+
+/* 
+ * 拖拽文件进入时的效果
+ */
+.upload-area.dragover {
+    border-color: #7c3aed;
+    background: rgba(124, 58, 237, 0.1);
+}
+
+/* 
+ * 上传内容区域
+ * 禁用指针事件确保点击事件传递到父元素
+ */
+.upload-content {
+    pointer-events: none;
+}
+
+/* 
+ * 上传图标样式
+ */
+.upload-icon {
+    width: 36px;
+    height: 36px;
+    color: #00d4ff;
+    margin-bottom: 8px;
+}
+
+.upload-content p {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    color: #fff;
+}
+
+.upload-hint {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+/* 
+ * 参数控制区域样式
+ * 限制高度以避免页面过长
+ */
+.controls-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 12px;
+}
+
+/* 
+ * 标签页导航样式
+ */
+.tabs-nav {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 
+ * 标签页按钮样式
+ */
+.tab-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #888;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* 
+ * 标签页按钮悬停效果
+ */
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* 
+ * 激活的标签页按钮样式
+ */
+.tab-btn.active {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+    border-color: #00d4ff;
+    color: #00d4ff;
+}
+
+/* 
+ * 标签页内容容器
+ */
+.tabs-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 6px;
+}
+
+/* 
+ * 自定义滚动条样式
+ */
+.tabs-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.tabs-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.tabs-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 212, 255, 0.3);
+    border-radius: 3px;
+}
+
+.tabs-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 212, 255, 0.5);
+}
+
+/* 
+ * 标签页面板样式
+ */
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+/* 
+ * 激活的标签页面板
+ */
+.tab-panel.active {
+    display: block;
+}
+
+/* 
+ * 淡入动画
+ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 
+ * 控制组样式
+ * 每组之间使用分隔线区分
+ */
+.control-group {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.control-group:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* 
+ * 单个控制项样式
+ */
+.control-item {
+    margin-bottom: 10px;
+}
+
+.control-item:last-child {
+    margin-bottom: 0;
+}
+
+/* 
+ * 控制项标签样式
+ */
+.control-item label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.8rem;
+    color: #bbb;
+}
+
+/* 
+ * 滑块控件样式
+ * 自定义滑块外观
+ */
+.control-item input[type="range"] {
+    width: calc(100% - 60px);
+    height: 5px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* 
+ * 滑块滑块头样式
+ */
+.control-item input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 212, 255, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.control-item input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+/* 
+ * 颜色选择器样式
+ */
+.control-item input[type="color"] {
+    width: 100%;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: transparent;
+}
+
+/* 
+ * 文本输入框样式
+ */
+.control-item input[type="text"] {
+    width: 100%;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.85rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.control-item input[type="text"]:focus {
+    border-color: #00d4ff;
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+}
+
+/* 
+ * 复选框样式
+ */
+.control-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #00d4ff;
+}
+
+/* 
+ * 数值显示区域样式
+ */
+.value-display {
+    display: inline-block;
+    width: 50px;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #00d4ff;
+    font-weight: 500;
+}
+
+/* 
+ * 缩放预设按钮组样式
+ */
+.scale-presets {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.preset-btn {
+    flex: 1;
+    padding: 6px 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #888;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.preset-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.preset-btn.active {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+    border-color: #00d4ff;
+    color: #00d4ff;
+}
+
+/* 
+ * 控制提示样式
+ */
+.control-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 6px;
+    border-left: 3px solid #7c3aed;
+}
+
+.control-hint svg {
+    width: 14px;
+    height: 14px;
+    color: #7c3aed;
+    flex-shrink: 0;
+}
+
+.control-hint span {
+    font-size: 0.7rem;
+    color: #aaa;
+    line-height: 1.4;
+}
+
+/* 
+ * 切角类型选择器样式
+ */
+.corner-type-selector {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.corner-type-selector.three-buttons {
+    gap: 6px;
+}
+
+.corner-type-selector.three-buttons .corner-type-btn {
+    padding: 8px 4px;
+    font-size: 0.65rem;
+}
+
+.corner-type-selector.three-buttons .corner-type-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.corner-type-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #888;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.corner-type-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.corner-type-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.corner-type-btn.active {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+    border-color: #00d4ff;
+    color: #00d4ff;
+}
+
+.corner-type-btn.active svg {
+    color: #00d4ff;
+}
+
+/* 
+ * 底部操作按钮区域样式
+ */
+.footer-actions {
+    margin-top: 15px;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* 
+ * 按钮通用样式
+ */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 140px;
+}
+
+.btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* 
+ * 次要按钮样式（透明背景）
+ */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* 
+ * 警告按钮样式（橙色，用于重新生成）
+ */
+.btn-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+}
+
+.btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+}
+
+/* 
+ * 成功按钮样式（绿色，用于下载）
+ */
+.btn-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+/* 
+ * 禁用按钮样式
+ */
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 
+ * 预览区域样式
+ */
+.preview-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 
+ * 预览容器样式
+ * 居中显示图片，支持滚动查看大图
+ */
+.preview-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    min-height: 400px;
+    overflow: auto;
+    position: relative;
+}
+
+/* 
+ * Canvas画布样式
+ * 默认隐藏，上传图片后显示
+ */
+#canvas {
+    max-width: 100%;
+    height: auto;
+    display: none;
+}
+
+/* 
+ * 占位符样式
+ * 未上传图片时显示提示信息
+ */
+.placeholder {
+    text-align: center;
+    color: #666;
+}
+
+.placeholder svg {
+    width: 80px;
+    height: 80px;
+    color: #444;
+    margin-bottom: 12px;
+}
+
+.placeholder p {
+    font-size: 0.9rem;
+}
+
+/* 
+ * 响应式布局 - 平板设备
+ * 当屏幕宽度小于1200px时，改为单列布局
+ */
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .left-panel {
+        order: 2;
+        height: auto;
+        max-height: 500px;
+    }
+    
+    .right-panel {
+        order: 1;
+    }
+    
+    .preview-container {
+        min-height: 300px;
+    }
+}
+
+/* 
+ * 响应式布局 - 移动设备
+ * 调整字体大小和间距
+ */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    header p {
+        font-size: 0.8rem;
+    }
+    
+    .upload-section,
+    .controls-section,
+    .preview-section {
+        padding: 12px;
+    }
+    
+    .tab-btn {
+        padding: 8px 4px;
+        font-size: 0.7rem;
+    }
+    
+    .tab-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn {
+        min-width: auto;
+        width: 100%;
+    }
+}
